@@ -21,8 +21,9 @@ const App = () => {
   };
 
   return <div>
-    <NavBar cartSize={cart.length} />
-    <Products items={productsList} addToCart={addToCart} />
+    {/* <NavBar cartSize={cart.length} />
+    <Products items={productsList} addToCart={addToCart} /> */}
+    <Cart items={productsList}/>
   </div>
 };
 
