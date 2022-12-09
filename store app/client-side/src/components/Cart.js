@@ -15,7 +15,7 @@ import {
 } from "mdb-react-ui-kit";
 
 export default function Cart(props) {
-    const totalAmount=(props.items.reduce((total,expense) =>  total = total + expense.amount , 0 ));
+    const totalAmount=(props.items.reduce((total,expense) =>  total = total + expense.amount *  expense.price , 0 ));
 return (
 <section className="h-100" style={{ backgroundColor: "#eee" }}>
   <MDBContainer className="py-5 h-100">

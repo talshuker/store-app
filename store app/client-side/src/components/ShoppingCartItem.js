@@ -33,19 +33,19 @@ function ShoppingCartItem(props) {
               </MDBCol>
               <MDBCol md="3" lg="3" xl="2"
                 className="d-flex align-items-center justify-content-around">
-                <MDBBtn color="link" className="px-2">
+                <MDBBtn color="link" className="px-2" onClick={()=>props.amount--}>
                   <MDBIcon fas icon="minus" />
                 </MDBBtn>
 
-                <MDBInput min={0} defaultValue={1} type="number" size="sm" />
+                <MDBInput min={0} defaultValue={props.amount} type="number" size="sm" />
 
-                <MDBBtn color="link" className="px-2">
-                  <MDBIcon fas icon="plus" />
+                <MDBBtn color="link" className="px-2" onClick={()=>props.amount++}>
+                  <MDBIcon fas icon="plus"/>
                 </MDBBtn>
               </MDBCol>
               <MDBCol md="3" lg="2" xl="2" className="offset-lg-1">
                 <MDBTypography tag="h5" className="mb-0">
-                {props.amount}$
+                {props.price}$
                 </MDBTypography>
               </MDBCol>
               <MDBCol md="1" lg="1" xl="1" className="text-end">

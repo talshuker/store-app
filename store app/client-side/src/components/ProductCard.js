@@ -22,7 +22,7 @@ function ProductCard(props) {
             <Card.Img variant="top" src={props.itemPicture} style={styles.cardImage} />
             <Card.Body>
                 <Card.Title>{props.title}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{props.amount}$</Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted">{props.price}$</Card.Subtitle>
                 <Card.Text>
                     {props.description}
                 </Card.Text>
