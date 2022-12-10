@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Products from "./components/Products";
 import Cart from "./components/Cart";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './components/NavBar';
+import { Route, Routes } from 'react-router-dom';
 
 const productsList = [
   { title: 'סבון', price: 15, amount: 0, description: 'חדש', itemPicture: require("../src/pics/pic1.jpg") },
@@ -20,11 +21,15 @@ const App = () => {
     console.log(cart)
   };
 
-  return <div>
-    {/* <NavBar cartSize={cart.length} />
-    <Products items={productsList} addToCart={addToCart} /> */}
-    <Cart items={productsList}/>
+  return (
+    <div>
+    <NavBar cartSize={cart.length} />
+    <Routes>
+      <Route exact path='/' element={<Products items={productsList} addToCart={addToCart} />} />
+      <Route path='/cart' element={<Cart items={productsList}/>} />
+    </Routes>
   </div>
+  )
 };
 
 export default App;

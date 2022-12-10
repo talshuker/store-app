@@ -1,15 +1,12 @@
 import React from "react";
 import ShoppingCartItem from "./ShoppingCartItem";
-import { Container, Row, Col } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import {
   MDBBtn,
   MDBCard,
   MDBCardBody,
-  MDBCardImage,
   MDBCol,
   MDBContainer,
-  MDBIcon,
-  MDBInput,
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
