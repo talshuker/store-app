@@ -7,7 +7,7 @@ function Products(props) {
         <div>
             <Container className='p-4'>
                 <Row xs={1} md={3} className="g-4">
-                    {props.items.map((expense) => <Col><ProductCard {...expense} addToCart={props.addToCart}/></Col>)}
+                    {props.items.map((expense) => <Col><ProductCard product={expense} addToCart={props.addToCart}/></Col>)}
                 </Row>
             </Container>
         </div>

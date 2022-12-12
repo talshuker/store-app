@@ -16,17 +16,26 @@ const App = () => {
   const [cart, setCart] = useState([]);
 
   const addToCart = (product) => {
-    console.log('Click')
-    setCart(cart => [...cart, product]);
-    console.log(cart)
+    
+   const isExist = cart.find(function(currItem) {
+      if(currItem.title == product.title)
+        return true;
+    });
+
+    if(!isExist) {
+      setCart(cart => [...cart, product]);
+    } 
+    product.amount++;
+
+    console.log(cart);
   };
 
   return (
     <div>
-    <NavBar cartSize={cart.length} />
+    <NavBar cartSize={()=> cart.reduce((total, product) => (product.amount + total), 0)} />
     <Routes>
       <Route exact path='/' element={<Products items={productsList} addToCart={addToCart} />} />
-      <Route path='/cart' element={<Cart items={productsList}/>} />
+      <Route path='/cart' element={<Cart items={cart}/>} />
     </Routes>
   </div>
   )
