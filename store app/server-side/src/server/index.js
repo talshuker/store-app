@@ -1,15 +1,18 @@
 const express = require('express');
-const { initConnection } = require('../db/db-connection');
+const { initConnection, initProductes } = require('../db/db-connection');
 const { default: mongoose } = require("mongoose");
 const Product = require('../models/product');
+const cors = require('cors');
 const app = express();
 const port = 3002;
 
 app.use(express.json());
+app.use(cors());
 
 (async () => {
   
-  initConnection();
+  await initConnection();
+  // initProductes();
   
   app.get('/liveness', (req, res) => {
     res.send('Server is ready!');
@@ -22,11 +25,12 @@ app.use(express.json());
 // })
 
 app.get('/products', async (req, res) => {
-  const product = new Product({ title: 'סבון', price: 15, amount: 1, description: 'חדש', itemPicture: "../src/pics/pic1.jpg" });
-  product.save();
+  console.log('Receive /products request');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Origin, Content-Type");
   const products = await Product.find({});
   res.send(products);
-  res.render('products/index' , {products});
+  // res.render('products/index', {products});
 })
 
 
