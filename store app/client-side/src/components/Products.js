@@ -25,7 +25,7 @@ const Products = (props) => {
         <div>
             <Container className='p-4'>
                 <Row xs={1} md={3} className="g-4">
-                    {data && data.map((product) => <Col><ProductCard key={product._id} {...product} addToCart={props.addToCart} /></Col>)}
+                    {data && data.map((product) => <Col><ProductCard key={product._id} product={product} addToCart={props.addToCart} /></Col>)}
                 </Row>
             </Container>
         </div>

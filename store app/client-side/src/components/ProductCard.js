@@ -4,7 +4,6 @@ import { Card, Button } from 'react-bootstrap';
 
 const styles = {
     card: {
-        //   backgroundColor: '#B7E0F2',
         borderRadius: 55,
         padding: '3rem',
         width: '18rem'
@@ -19,14 +18,14 @@ const styles = {
 function ProductCard(props) {
     return (
         <Card style={styles.card}>
-            <Card.Img variant="top" src={props.itemPicture} style={styles.cardImage} />
+            <Card.Img variant="top" src={props.product.itemPicture} style={styles.cardImage} />
             <Card.Body>
-                <Card.Title>{props.title}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{props.price}$</Card.Subtitle>
+                <Card.Title>{props.product.title}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{props.product.price}$</Card.Subtitle>
                 <Card.Text>
-                    {props.description}
+                    {props.product.description}
                 </Card.Text>
-                <Button variant="primary" onClick={() => props.addToCart(props.title)}>Add</Button>
+                <Button variant="primary" onClick={() => props.addToCart(props.product)}>Add</Button>
             </Card.Body>
         </Card>
     );

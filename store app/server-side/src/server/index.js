@@ -12,7 +12,7 @@ app.use(cors());
 (async () => {
   
   await initConnection();
-  // initProductes();
+  initProductes();
   
   app.get('/liveness', (req, res) => {
     res.send('Server is ready!');
