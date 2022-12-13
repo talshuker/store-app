@@ -45,7 +45,7 @@ export default function Cart(props) {
                 <MDBTypography tag="h5" className="fw-bold mb-0">
                   {totalAmount}$
                 </MDBTypography>
-                <MDBBtn className="ms-3" style={{ float: 'right' }} color="info" block size="lg" onClick={() => saveData(props)}>
+                <MDBBtn className="ms-3" style={{ float: 'right',  height: 50, marginTop: 10}} color="info" block size="lg" onClick={() => saveData(props)}>
                   Send
                 </MDBBtn>
               </MDBCardBody>
