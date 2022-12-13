@@ -7,30 +7,29 @@ import { Route, Routes } from 'react-router-dom';
 
 const App = () => {
   const [cart, setCart] = useState([]);
+  let [productsAmount, setProductsAmount] =useState(0);
 
   const addToCart = (product) => {
-    
-   const isExist = cart.find(function(currItem) {
-      if(currItem.title == product.title)
-        return true;
-    });
-
-    if(!isExist) {
-      setCart(cart => [...cart, product]);
-    } 
-    product.amount++;
-
-    console.log(cart);
+    let updatedCart;
+    const currProductIndex = cart.findIndex(currItem => currItem.title === product.title);
+    if (currProductIndex !== -1) { 
+      updatedCart = cart.map(currItem => currItem.title === product.title ? {...currItem, amount: currItem.amount+=1 } : currItem);
+    } else {
+      product.amount++;
+      updatedCart = [...cart, product]
+    }
+    setProductsAmount(updatedCart.reduce((total, product) => (product.amount + total), 0));
+    setCart(updatedCart);
   };
 
   return (
     <div>
-    <NavBar cartSize={()=> cart.reduce((total, product) => (product.amount + total), 0)} />
-    <Routes>
-      <Route exact path='/' element={<Products addToCart={addToCart}/>} />
-      <Route path='/cart' element={<Cart items={cart}/>} />
-    </Routes>
-  </div>
+      <NavBar cartSize={productsAmount} />
+      <Routes>
+        <Route exact path='/' element={<Products addToCart={addToCart} />} />
+        <Route path='/cart' element={<Cart items={cart} />} />
+      </Routes>
+    </div>
   )
 };
 
