@@ -1,6 +1,7 @@
 import React from "react";
 import ShoppingCartItem from "./ShoppingCartItem";
 import { Col } from 'react-bootstrap';
+import Api from '../api/api';
 import {
   MDBBtn,
   MDBCard,
@@ -10,6 +11,16 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
+
+async function saveData(props) {
+   await Api.post('/products/save/', {
+      headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+      },
+      items: props.items
+  });
+}
 
 export default function Cart(props) {
     const totalAmount=(props.items.reduce((total,expense) =>  total = total + expense.amount *  expense.price , 0 ));
@@ -35,7 +46,7 @@ return (
                       <MDBTypography tag="h5" className="fw-bold mb-0">
                         {totalAmount}$
             </MDBTypography>
-            <MDBBtn className="ms-3" style={{float: 'right'}} color="info" block size="lg" onClick={()=>console.log("send to db" )}>
+            <MDBBtn className="ms-3" style={{float: 'right'}} color="info" block size="lg" onClick={()=>saveData(props)}>
               Send
             </MDBBtn>
           </MDBCardBody>
