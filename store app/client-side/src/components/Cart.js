@@ -10,7 +10,12 @@ import {
   MDBContainer,
   MDBRow,
   MDBTypography,
-  MDBInput
+  MDBInput,
+  MDBModal,
+  MDBModalDialog,
+  MDBModalContent,
+  MDBModalHeader,
+  MDBModalTitle,
 } from "mdb-react-ui-kit";
 
 async function saveData(props, name, phoneNumber, email) {
@@ -35,6 +40,9 @@ export default function Cart(props) {
   const [nameValue, setNameValue] = useState('');
   const [phoneNumberValue, setPhoneNumberValue] = useState('');
   const [emailValue, setEmailValue] = useState('');
+  const [checkout, setCheckout] = useState(false);
+
+  const toggleShow = () => setCheckout(!checkout);
 
   const totalAmount = (props.items.reduce((total, expense) => total = total + expense.amount * expense.price, 0));
   return (
@@ -60,20 +68,6 @@ export default function Cart(props) {
                 </div>
               </MDBCardBody>
             </MDBCard>
-
-            {/* <MDBCard>
-              <MDBCardBody>
-                <MDBTypography tag="h5" className="fw-bold mb-0">
-                  Total:
-                </MDBTypography>
-                <MDBTypography tag="h5" className="fw-bold mb-0">
-                  {totalAmount}$
-                </MDBTypography>
-                <MDBBtn className="ms-3" style={{ float: 'right',  height: 50, marginTop: 10}} color="info" block size="lg" onClick={() => saveData(props)}>
-                  Send
-                </MDBBtn>
-              </MDBCardBody>
-            </MDBCard> */}
           </MDBCol>
           <MDBCol lg="4" className="bg-grey" style={{"height": "110vh"}}>
             <div className="p-5">
@@ -118,13 +112,23 @@ export default function Cart(props) {
                 <MDBTypography tag="h5">{totalAmount}$</MDBTypography>
               </div>
 
-              <MDBBtn style={{ float: 'right',  height: 50, marginTop: 10}} color="dark" block size="lg" onClick={() => saveData(props, nameValue, phoneNumberValue, emailValue)}>
-                Register
+              <MDBBtn style={{ float: 'right',  height: 50, marginTop: 10}} color="dark" block size="lg" onClick={() => {saveData(props, nameValue, phoneNumberValue, emailValue); toggleShow();}}>
+                Checkout
               </MDBBtn>
             </div>
           </MDBCol>
         </MDBRow>
       </MDBContainer>
+      <MDBModal show={checkout} setShow={setCheckout} tabIndex='-1'>
+        <MDBModalDialog>
+          <MDBModalContent>
+            <MDBModalHeader>
+              <MDBModalTitle>Your order has been received</MDBModalTitle>
+              <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
+            </MDBModalHeader>
+          </MDBModalContent>
+        </MDBModalDialog>
+      </MDBModal>
     </section>
   );
 }
