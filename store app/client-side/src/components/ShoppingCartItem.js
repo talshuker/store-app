@@ -1,7 +1,5 @@
 import React from "react";
 import {
-  MDBCard,
-  MDBCardBody,
   MDBCardImage,
   MDBCol,
   MDBIcon,
@@ -12,11 +10,8 @@ import {
 
 
 function ShoppingCartItem(props) {
-
   return (
     <div>
-      <MDBCard className="rounded-3 mb-4">
-        <MDBCardBody className="p-4">
           <MDBRow className="justify-content-between align-items-center">
             <MDBCol md="2" lg="2" xl="2">
               <MDBCardImage className="rounded-3" fluid
@@ -42,8 +37,7 @@ function ShoppingCartItem(props) {
                 <MDBIcon icon="times" onClick={() => props.setProductInCart(props.product, 0)}/>
             </MDBCol>
           </MDBRow>
-        </MDBCardBody>
-      </MDBCard>
+        
     </div>
   )
 }

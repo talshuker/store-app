@@ -13,7 +13,7 @@ app.use(cors());
 (async () => {
   
   await initConnection();
-  initProductes();
+  // initProductes();
   
   app.get('/liveness', (req, res) => {
     res.send('Server is ready!');
@@ -28,9 +28,9 @@ app.get('/products', async (req, res) => {
 })
 
 
-app.post('/products/save/', async (req, res) => {
-  console.log('Receive /products/save/ request');
-  const cart = new Cart(req.body);
+app.post('/cart/save/', async (req, res) => {
+  console.log('Receive /cart/save/ request');
+  const cart = new Cart(req.body.cart);
   await cart.save();
   res.send("inserted " + cart);
 })

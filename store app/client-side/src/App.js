@@ -44,7 +44,7 @@ const App = () => {
       <NavBar cartSize={productsAmount} />
       <Routes>
         <Route exact path='/' element={<Products addToCart={addToCart}/>} />
-        <Route path='/cart' element={<Cart items={cart} setProductInCart={setProductInCart} getProductAmount={getProductAmount}/>} />
+        <Route path='/cart' element={<Cart items={cart} setProductInCart={setProductInCart} getProductAmount={getProductAmount} productsAmount={productsAmount}/>} />
       </Routes>
     </div>
   )
